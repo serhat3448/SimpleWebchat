@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DAL.Concrete.EntityFramework;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Web.Controllers
 {
     public class HomeController : Controller
     {
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -18,8 +20,11 @@ namespace Web.Controllers
             _logger = logger;
         }
 
+
         public IActionResult Index()
         {
+            WebChatContext webChatContext = new WebChatContext();
+            webChatContext.Database.EnsureCreated();
             return View();
         }
 

@@ -15,6 +15,7 @@ namespace BLL.Concrete
         public UserManager(IUserDal userDal)
         {
             _userDal = userDal;
+
         }
         public IResult Add(User user)
         {

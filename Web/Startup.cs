@@ -1,3 +1,5 @@
+using BLL.Abstract;
+using BLL.Concrete;
 using DAL.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Web.Hubs;
+using Web.Data;
 
 
 namespace Web
@@ -30,6 +33,10 @@ namespace Web
         {
             services.AddControllersWithViews();
             services.AddSignalR();
+
+            services.AddDbContext<WebContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("WebContext")));
+            //services.AddSingleton<IUserService, UserManager>();
 
         }
 
